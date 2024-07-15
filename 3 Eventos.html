@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonaGamer</title>
+    <link rel="icon" href="titlle_logo.jpeg" type="image/x-icon">
+    <style>
+
+   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+
+   .noticias-gamers h1 {
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            margin-bottom: 40px;
+   	        font-size: 60px;
+            color: #00ffff; 
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            animation: glow 1.5s infinite alternate;
+            margin-top: 130px;
+        }
+
+   .contenido-noticia h2 {
+            margin: 0 0 10px;
+            color: #00ffff;
+            font-size: 18px;
+            text-shadow: 0 0 10px #00ffff;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+
+        .custom-body {
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Fondo oscuro estilo gamer */
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 25px 20px;
+    position: fixed; /* Fijo en la parte superior */
+    width: 100%; /* Ocupa todo el ancho de la página */
+    top: 0; /* Posicionado en la parte superior */
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+  }
+  .line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #f08bd3; /* Inicialmente rosado neon */
+    animation: changeColor 10s infinite; /* Cambia de color cada 5 segundos */
+  }
+  @keyframes changeColor {
+    0%, 100% {
+      background-color: #f08bd3; /* Rosado neon */
+    }
+    50% {
+      background-color: #00b0f0; /* Azul neon */
+    }
+  }
+  .logo img {
+    height: 60px; /* Ajusta el tamaño del logo según sea necesario */
+    margin-left: 10px;
+  }
+  .menu {
+    display: flex;
+  }
+  .menu a {
+    text-decoration: none; /* Quitar subrayado predeterminado de los enlaces */
+  }
+  .menu button {
+    font-family: 'Roboto Mono', monospace;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Agregado box-shadow */
+    border-radius: 20px; /* Pequeña curvatura */
+    font-size: 20px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block; /* Asegura que los botones enlace ocupen solo el tamaño del contenido */
+    margin-right: 35px;
+  }
+  .menu button:hover {
+    background-color: transparent; /* Azul celeste sólido neon */
+    color: white; /* Cambio de color del texto */
+    transform: scale(1.1); /* Efecto de zoom */
+    box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff; /* Sombra neon azul más intensa */
+  }
+  .menu button:hover .button-text {
+    color: #00bfff; /* Cambio de color del texto al estilo gamer */
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  .dropdown-content a:hover {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+    background-color: tranparent;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff;
+    border-radius: 20px;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  /* Estilo especial para el botón 6 */
+  .menu .special-button {
+    background-color: #f08bd3; /* Rosado */
+    box-shadow: 0 0 15px #f08bd3; /* Sombra neon rosada */
+  }
+  .menu .special-button:hover {
+    background-color: #f08bd3; /* Mantener el color rosado */
+    box-shadow: 0 0 20px #f08bd3, 0 0 40px #f08bd3, 0 0 60px #f08bd3; /* Sombra neon rosada más intensa */
+  }
+  .menu .special-button .button-text {
+    color: purple; /* Color inicial del texto */
+  }
+  .menu .special-button:hover .button-text {
+    color: white; /* Cambio de color del texto al estilo gamer */
+  }
+  /* Estilo fijo para el botón 3 */
+  .menu .fixed-button-3 {
+    background-color: transparent; /* Azul celeste sólido neon */
+    box-shadow: 0 0 20px #00b0f0, 0 0 40px #00b0f0, 0 0 60px #00b0f0; /* Sombra neon azul más intensa */
+  }
+  .menu .fixed-button-3 .button-text {
+    color: white; /* Color inicial del texto */
+  }
+  /* Asegura que el contenido principal no quede oculto detrás del menú fijo */
+  .main-content {
+    padding-top: 80px; /* Ajustar según la altura del menú */
+  }
+  /* Estilos para menú desplegable en móviles */
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: black;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+    }
+    .menu a, .dropdown {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .menu a:hover, .dropdown:hover {
+      background-color: #333;
+    }
+    .menu a:hover button, .dropdown:hover button {
+      background-color: transparent;
+      color: #fff;
+    }
+    .menu a:hover .button-text, .dropdown:hover .button-text {
+      color: #00bfff;
+    }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      margin-right: 20px; /* Añadir margen derecho */
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px;
+      transition: 0.4s;
+    }
+    .hamburger.active .bar1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active .bar2 {
+      opacity: 0;
+    }
+    .hamburger.active .bar3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+    .menu.show {
+      display: flex;
+    }
+  }
+
+
+
+
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .noticias-gamers {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            }
+            to {
+                text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff00ff, #00ffff);
+            animation: slide 2s infinite alternate;
+        }
+
+        @keyframes slide {
+            from {
+                background-position: 0% 50%;
+            }
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        .noticia {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            padding-left: 70px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .noticia:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        }
+
+        .noticia::before {
+            content: attr(data-date);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 140px;
+            padding: 10px;
+            background: linear-gradient(to right, #ff00b3, #00ffff);
+            color: #ffffff;
+            text-align: center;
+            border-radius: 0 15px 15px 0;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: 0 0 5px #000, 0 0 10px #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .noticia img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .noticia img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        .contenido-noticia {
+            padding: 20px;
+        }
+
+
+
+        .contenido-noticia p {
+            margin: 0 0 10px;
+            color: #cccccc;
+        }
+
+        .contenido-noticia a {
+            color: #ff00b3;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ff00b3;
+            transition: color 0.3s;
+        }
+
+        .contenido-noticia a:hover {
+            text-decoration: underline;
+            color: #00ffff;
+        }
+
+        .noticia-destacada {
+            border: 5px solid #ffff00;
+            box-shadow: 0 0 20px #ffff00;
+            padding: 40px 70px;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .noticia-destacada:hover {
+            box-shadow: 0 0 30px #ffff00;
+        }
+
+        .noticia-destacada img {
+            width: 600px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+        }
+
+        .noticia-destacada .contenido-noticia {
+            padding-left: 0;
+            text-align: center;
+        }
+
+        .noticia-destacada .contenido-noticia h2 {
+            font-size: 24px;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .noticia-destacada .contenido-noticia p.descripcion {
+            margin-top: 10px;
+            color: #ffff00;
+            font-size: 16px;
+            text-shadow: 0 0 5px #000;
+        }
+
+        .noticia-destacada .contenido-noticia a {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        .noticia-destacada .contenido-noticia a:hover {
+            color: #0000ff;
+        }
+
+
+
+
+    /* Estilos generales */
+    .social-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      background-color: black;
+      border-top: 5px solid pink; /* Color inicial del borde */
+      animation: borderAnimation 10s infinite alternate;
+      margin-top: 0px; /* Añade espacio antes del contenedor */
+    }
+    .social-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .social-left {
+      width: 20%;
+      text-align: center;
+    }
+    .social-center {
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-left: 100px;
+      margin-top: 50px;
+    }
+    .social-right {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-right: 70px;
+      margin-top: 20px;
+    }
+    .social-bottom {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .social-bottom p {
+      text-align: center;
+      margin: 0;
+      font-size: 14px;
+      color: white;
+      font-family: 'Roboto Mono', monospace;
+      margin-right: 250px;
+      margin-left: 250px;
+      border-top: solid 2px;
+      border-color: white;
+      padding: 10px;
+    }
+    .social-h2 {
+      margin: 0;
+      color: white;
+      text-align: left;
+      font-size: 35px;
+      margin-left: 30px;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .social-p {
+      margin: 0;
+      color: white;
+      text-align: justify;
+      font-size: 15px;
+      margin-left: 70px;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .social-logo {
+      width: 60px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .social-logo-center {
+      width: 200px;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        border-color: pink;
+      }
+      50% {
+        border-color: blue;
+      }
+      100% {
+        border-color: pink;
+      }
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+
+
+
+
+  <body class="custom-body">
+
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <div class="menu" id="menu">
+        <a href="/1ZonaGamer.html"><button><span class="button-text">INICIO</span></button></a>
+        <a href="../2 Pagina JUEGOS/2 JUEGOS.html"><button><span class="button-text">JUEGOS</span></button></a>
+        <a href="../3 Pagina Eventos/3 Eventos.html"><button class="fixed-button-3"><span class="button-text">EVENTOS</span></button></a>
+        <a href="../4 Pagina Promociones/4 PROMOCIONES.html"><button><span class="button-text">PROMOCIONES</span></button></a>
+        <a href="../5 Play/5 Play.html"><button class="special-button"><span class="button-text">PLAY</span></button></a>
+      </div>
+      <div class="line"></div>
+    </div>
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById('menu');
+        const hamburger = document.querySelector('.hamburger');
+        menu.classList.toggle('show');
+        hamburger.classList.toggle('active');
+      }
+    </script>
+
+
+
+
+
+    <section class="noticias-gamers">
+        <h1>EVENTOS GAMERS</h1>
+        <div class="timeline">
+            <div class="noticia noticia-destacada" data-date="24 JUN 2024">
+                <img src="P0001.jpg" alt="Evento Activo">
+                <div class="contenido-noticia">
+                    <h2>¡Evento Gamer Activo!</h2>
+                    <p class="descripcion">Invita a tus amigos a jugar en una partida desenfrenada contra poderosos zombies ¡No te lo pierdas!</p>
+                    <p>Únete a nuestro evento para gamers y disfruta de las últimas novedades...</p>
+                    <a href="enlace_a_evento.html">Leer más</a>
+                </div>
+            </div>
+            <div class="noticia" data-date="23 JUN 2024">
+                <img src="P0002.jpg" alt="Noticia 1">
+                <div class="contenido-noticia">
+                    <h2>Black Friday Gamer Day</h2>
+                    <p>Disfruta el alquiler de consolar con 25% de descuento...</p>
+                    <a href="enlace_a_noticia1.html">Leer más</a>
+                </div>
+            </div>
+            <div class="noticia" data-date="22 JUN 2024">
+                <img src="P0003.jpg" alt="Noticia 2">
+                <div class="contenido-noticia">
+                    <h2>Happy Father's Gamer Day</h2>
+                    <p>Ven y celebra el dia del padre gamer con estas ofertas...</p>
+                    <a href="enlace_a_noticia2.html">Leer más</a>
+                </div>
+            </div>
+            <!-- Agrega más noticias según sea necesario -->
+        </div>
+    </section>
+
+
+
+
+  <div class="content">
+  <!-- Contenedor de redes sociales -->
+  <div class="social-container">
+    <div class="social-top">
+      <div class="social-left">
+        <h2 class="social-h2">ENCUENTRANOS</h2>
+        <p class="social-p"><br><strong>LOCAL: </strong>La Merced 694<br><br>
+        <strong>CONTACTO: </strong>+51 921613631<br><br>
+        <strong>EMAIL: </strong>zonagamer@gmail.com</p>
+      </div>
+      <div class="social-center">
+        <a href="pagina1.html"><img src="Y001.png" alt="Logo 1" class="social-logo social-logo-center"></a>
+        <a href="pagina2.html"><img src="Y002.png" alt="Logo 2" class="social-logo social-logo-center"></a>
+        <a href="pagina3.html"><img src="Y003.png" alt="Logo 3" class="social-logo social-logo-center"></a>
+      </div>
+      <div class="social-right">
+        <a href="pagina4.html"><img src="Y011.png" alt="Logo 4" class="social-logo"></a>
+        <a href="pagina5.html"><img src="Y012.png" alt="Logo 5" class="social-logo"></a>
+      </div>
+    </div>
+    <div class="social-bottom">
+      <p class="social-p">[2024]© Todos los derechos reservados. El uso de nuestras consolas es 
+        completamente legal y conforme a las leyes vigentes.<br> Gracias por elegirnos y respetar nuestras políticas,
+         garantizando una experiencia de juego segura y legal. <br> ZONAGAMER
+         PLAYSTATION 5</p>
+    </div>
+  </div>
+
+
+</body>
+</html>
