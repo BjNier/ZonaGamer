@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonaGamer</title>
+    <link rel="icon" href="titlle_log.jpeg" type="image/x-icon">
+    <style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+#page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+            pointer-events: none; /* Para evitar interacción con el loader */
+        }
+
+        .resaltar-palabra {
+            color:  #00bfff; /* Cambia "red" por el color que prefieras */
+            text-shadow: 0 0 10px #00bfff;
+        }
+        .resaltar-palabra2 {
+            color: #ff00b3; /* Cambia "red" por el color que prefieras */
+            text-shadow: 0 0 10px #ff00b3;
+        }
+
+        .loader-content {
+            color: #00FF00; /* Color verde neón para el texto */
+            font-family: 'Press Start 2P', cursive; /* Fuente estilo gamer */
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 1s forwards; /* Animación del texto */
+        }
+
+        .loader-logo {
+            width: 500px; /* Ajusta el tamaño del logo según sea necesario */
+            height: auto;
+            opacity: 0;
+            animation: fadeInLogo 1s 0.5s forwards; /* Animación del logo con retraso */
+        }
+
+        #content {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        /* Animación para el texto */
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animación para el logo */
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animación de la pantalla de carga */
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+
+        body {
+            background-color: black;
+            opacity: 0; /* Inicialmente invisible */
+            animation: fadeIn 2s forwards; /* Animación de aparición */
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Aparece gradualmente */
+            }
+        }
+
+
+
+        /* Estilos individuales para títulos y párrafos */
+        #unique-section1 h1 {
+            font-family: 'Press Start 2P', cursive;
+            margin-left: 20px;
+            font-size: 2.5em;
+            color: #00bfff;  /* Cambia el color según tus necesidades */
+            text-shadow: 0 0 5px #00bfff;
+        }
+        #unique-section1 p {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.8em;
+            color: #ff00b3; /* Cambia el color según tus necesidades */
+            text-align: justify;
+            margin-left: 20px;
+            margin-right: 40px;
+            text-shadow: 0 0 5px #ff00b3;
+        }
+
+        #unique-section2 h1 {
+            font-family: 'Press Start 2P', cursive;
+            margin-left: 20px;
+            font-size: 2.5em;
+            color: #00bfff;  /* Cambia el color según tus necesidades */
+            text-shadow: 0 0 5px #00bfff;
+        }
+        #unique-section2 p {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.8em;
+            color:#ff00b3; /* Cambia el color según tus necesidades */
+            text-align: justify;
+            margin-left: 20px;
+            margin-right: 40px;
+            text-shadow: 0 0 5px #ff00b3;
+        }
+
+        #unique-section3 h1 {
+            font-family: 'Press Start 2P', cursive;
+            margin-left: 20px;
+            font-size: 2.5em;
+            color: #00bfff;  /* Cambia el color según tus necesidades */
+            text-shadow: 0 0 5px #00bfff;
+        }
+        #unique-section3 p {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.8em;
+            color:#ff00b3; /* Cambia el color según tus necesidades */
+            text-align: justify;
+            margin-left: 20px;
+            margin-right: 40px;
+            text-shadow: 0 0 5px #ff00b3;
+        }
+
+
+        .custom-body {
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #111; /* Fondo oscuro estilo gamer */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 25px 20px;
+            position: fixed; /* Fijo en la parte superior */
+            width: 100%; /* Ocupa todo el ancho de la página */
+            top: 0; /* Posicionado en la parte superior */
+            z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+        }
+        .line {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #f08bd3; /* Inicialmente rosado neon */
+            animation: changeColor 10s infinite; /* Cambia de color cada 10 segundos */
+        }
+        @keyframes changeColor {
+            0%, 100% {
+                background-color: #f08bd3; /* Rosado neon */
+            }
+            50% {
+                background-color: #00b0f0; /* Azul neon */
+            }
+        }
+        .logo img {
+            height: 60px; /* Ajusta el tamaño del logo según sea necesario */
+            margin-left: 10px;
+        }
+        .menu {
+            display: flex;
+        }
+        .menu a {
+            text-decoration: none; /* Quitar subrayado predeterminado de los enlaces */
+        }
+        .menu button {
+            font-family: 'Roboto Mono', monospace;
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Agregado box-shadow */
+            border-radius: 20px; /* Pequeña curvatura */
+            font-size: 20px;
+            position: relative;
+            overflow: hidden;
+            display: inline-block; /* Asegura que los botones enlace ocupen solo el tamaño del contenido */
+            margin-right: 35px;
+        }
+        .menu button:hover {
+            background-color: transparent; /* Azul celeste sólido neon */
+            color: white; /* Cambio de color del texto */
+            transform: scale(1.1); /* Efecto de zoom */
+            box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff; /* Sombra neon azul más intensa */
+        }
+        .menu button:hover .button-text {
+            color: #00bfff; /* Cambio de color del texto al estilo gamer */
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-content a:hover {
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+            background-color: tranparent;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff;
+            border-radius: 20px;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Estilo especial para el botón 6 */
+        .menu .special-button {
+            background-color: #f08bd3; /* Rosado */
+            box-shadow: 0 0 15px #f08bd3; /* Sombra neon rosada */
+        }
+        .menu .special-button:hover {
+            background-color: #f08bd3; /* Mantener el color rosado */
+            box-shadow: 0 0 20px #f08bd3, 0 0 40px #f08bd3, 0 0 60px #f08bd3; /* Sombra neon rosada más intensa */
+        }
+        .menu .special-button .button-text {
+            color: purple; /* Color inicial del texto */
+        }
+        .menu .special-button:hover .button-text {
+            color: white; /* Cambio de color del texto al estilo gamer */
+        }
+        /* Estilo fijo para el botón 1 */
+        .menu .fixed-button {
+            background-color: transparent; /* Azul celeste sólido neon */
+            box-shadow: 0 0 20px #00b0f0, 0 0 40px #00b0f0, 0 0 60px #00b0f0; /* Sombra neon azul más intensa */
+        }
+        .menu .fixed-button .button-text {
+            color: white; /* Color inicial del texto */
+        }
+        /* Asegura que el contenido principal no quede oculto detrás del menú fijo */
+        .main-content {
+            padding-top: 80px; /* Ajustar según la altura del menú */
+        }
+        /* Estilos para menú desplegable en móviles */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: black;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+            }
+            .menu a, .dropdown {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+            .menu a:hover, .dropdown:hover {
+                background-color: #333;
+            }
+            .menu a:hover button, .dropdown:hover button {
+                background-color: transparent;
+                color: #fff;
+            }
+            .menu a:hover .button-text, .dropdown:hover .button-text {
+                color: #00bfff;
+            }
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                margin-right: 50px;
+            }
+            .hamburger div {
+                width: 25px;
+                height: 3px;
+                background-color: white;
+                margin: 4px;
+                transition: 0.4s;
+            }
+            .hamburger.active .bar1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger.active .bar2 {
+                opacity: 0;
+            }
+            .hamburger.active .bar3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            .menu.show {
+                display: flex;
+            }
+        }
+
+
+
+  body.unique-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Evita el desplazamiento horizontal */
+            scroll-behavior: smooth; /* Desplazamiento suave */
+            margin-top: 105px;
+        }
+        .unique-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh; /* Altura mínima del viewport */
+            color: white;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: opacity 0.5s, transform 0.5s;
+            box-shadow: 0 0 20px #00b0f0, 0 0 40px #00b0f0, 0 0 60px #00b0f0;
+        }
+        .unique-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            transition: background 0.5s;
+        }
+        .unique-section:hover::after {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .unique-section .unique-text, .unique-section .unique-image {
+            position: relative;
+            z-index: 1;
+        }
+        .unique-section .unique-text {
+            flex: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        .unique-section .unique-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .unique-section .unique-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.5s ease, opacity 1s ease-in-out;
+            /* Agrega márgenes a las imágenes */
+            margin-left: 20px; /* Margen izquierdo */
+            margin-right: 20px; /* Margen derecho */
+        }
+        .unique-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .unique-section.active .unique-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .unique-section.active .unique-image img {
+            transform: scale(1.05);
+        }
+        .unique-section:nth-child(1) {
+            background-image: url('S001.jpg');
+        }
+        .unique-section:nth-child(2) {
+            background-image: url('S101.jpg');
+            flex-direction: row-reverse;
+        }
+        .unique-section:nth-child(3) {
+            background-image: url('S201.jpg');
+            flex-direction: row;
+        }
+
+        /* Galería */
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery img {
+            position: absolute;
+            max-width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .gallery img.active {
+            opacity: 1;
+        }
+
+        /* Fondo de galería de la sección 1 */
+        .background-gallery {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .background-gallery img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .background-gallery img.active {
+            opacity: 1;
+        }
+
+
+
+
+
+
+
+    /* Estilos generales */
+    .social-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      background-color: black;
+      border-top: 5px solid pink; /* Color inicial del borde */
+      animation: borderAnimation 10s infinite alternate;
+      margin-top: 0px; /* Añade espacio antes del contenedor */
+    }
+    .social-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .social-left {
+      width: 20%;
+      text-align: center;
+    }
+    .social-center {
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-left: 100px;
+      margin-top: 50px;
+    }
+    .social-right {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-right: 70px;
+      margin-top: 20px;
+    }
+    .social-bottom {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .social-bottom p {
+      text-align: center;
+      margin: 0;
+      font-size: 14px;
+      color: white;
+      font-family: 'Roboto Mono', monospace;
+      margin-right: 250px;
+      margin-left: 250px;
+      border-top: solid 2px;
+      border-color: white;
+      padding: 10px;
+
+    }
+    .social-h2 {
+      margin: 0;
+      color: white;
+      text-align: left;
+      font-size: 35px;
+      margin-left: 30px;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .social-p {
+      margin: 0;
+      color: white;
+      text-align: justify;
+      font-size: 15px;
+      margin-left: 70px;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .social-logo {
+      width: 60px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .social-logo-center {
+      width: 200px;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        border-color: pink;
+      }
+      50% {
+        border-color: blue;
+      }
+      100% {
+        border-color: pink;
+      }
+    }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="page-loader">
+        <img src="a2logo.png" alt="Logo" class="loader-logo"> <!-- Cambia 'tu-logo.png' por la ruta de tu logo -->
+        <div class="loader-content">
+            <h1><span class="resaltar-palabra2">¡Bienv<span class="resaltar-palabra">enido!</span></span></h1>
+        </div>
+    </div>
+
+
+
+<div id="content">
+
+  <body class="unique-body">
+    <div class="unique-section active" id="unique-section1">
+        <div class="background-gallery">
+            <img src="S001.jpg" alt="Fondo 1" class="active">
+            <img src="S002.jpg" alt="Fondo 2">
+            <img src="S003.jpeg" alt="Fondo 3">
+            <img src="S004.jpg" alt="Fondo 3">
+        </div>
+        <div class="unique-text">
+            <h1>¡JUEGOS DESTACADOS!</h1>
+            <p>¡Ven a nuestro local de videojuegos y disfruta de la experiencia definitiva! Ofrecemos 
+              partidas desenfrenadas para que no pierdas ni un minuto de diversión.
+              Somos el lugar perfecto para gamers de todas las edades. ¡No te lo pierdas y únete a la acción 
+              hoy mismo!"</p>
+        </div>
+        <div class="unique-image">
+            <div class="gallery">
+                <img src="S011.jpg" alt="Imagen 1" class="active">
+                <img src="S012.jpg" alt="Imagen 2">
+                <img src="S013.jpg" alt="Imagen 3">
+                <img src="S014.jpg" alt="Imagen 4">
+            </div>
+        </div>
+    </div>
+
+    <div class="unique-section" id="unique-section2">
+        <div class="unique-text">
+            <h1>¡DISFRUTA CON AMIGOS!</h1>
+              <p>Comparte la emoción con tus amigos, ya que nuestras consolas permiten hasta 4 
+                jugadores simultáneos por estación. Además, puedes saborear deliciosos snacks 
+                mientras juegas, creando la experiencia perfecta para una tarde inolvidable de 
+                diversión y camaradería. ¡Te esperamos!</p>
+        </div>
+        <div class="unique-image">
+            <div class="gallery">
+                <img src="foto1.jpeg" alt="Imagen 5" class="active">
+                <img src="foto2.jpeg" alt="Imagen 6">
+                <img src="foto3.jpeg" alt="Imagen 7">
+            </div>
+        </div>
+    </div>
+
+    <div class="unique-section" id="unique-section3">
+        <div class="unique-text">
+            <h1>¡LUGAR ACOGEDOR!</h1>
+            <p>Lugar perfecto para los apasionados de los videojuegos.
+              Nuestro local combina la última tecnología en consolas con un ambiente cálido y acogedor, 
+              creando un espacio ideal para disfrutar de tus juegos favoritos. Con cómodas áreas de descanso e 
+              iluminación suave ideal para largas sesiones de juego.</p>
+        </div>
+        <div class="unique-image">
+            <div class="gallery">
+                <img src="image1.jpg" alt="Imagen 8" class="active">
+                <img src="image2.jpg" alt="Imagen 9">
+                <img src="image3.jpg" alt="Imagen 10">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.unique-section');
+            let currentSectionIndex = 0;
+
+            function setActiveSection(index) {
+                sections.forEach((section, idx) => {
+                    if (idx === index) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+            }
+
+            // Set initial active section based on scroll position
+            function setInitialSection() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+
+                    if (scrollPosition >= sectionTop - windowHeight / 2 && scrollPosition < sectionTop + sectionHeight / 2) {
+                        currentSectionIndex = index;
+                    }
+                });
+
+                setActiveSection(currentSectionIndex);
+            }
+
+            setInitialSection();
+
+            window.addEventListener('scroll', () => {
+                setInitialSection();
+            });
+
+            window.addEventListener('wheel', (event) => {
+                if (event.deltaY < 0) {
+                    // Scrolling up
+                    currentSectionIndex = Math.max(currentSectionIndex - 1, 0);
+                } else {
+                    // Scrolling down
+                    currentSectionIndex = Math.min(currentSectionIndex + 1, sections.length - 1);
+                }
+
+                setActiveSection(currentSectionIndex);
+
+                // Prevent default scroll behavior
+                event.preventDefault();
+            });
+
+            window.addEventListener('resize', () => {
+                setInitialSection();
+            });
+
+            // Galería de imágenes para la sección 1
+            const galleryImages1 = document.querySelectorAll('#unique-section1 .gallery img');
+            let currentImageIndex1 = 0;
+
+            function changeImage1() {
+                galleryImages1[currentImageIndex1].classList.remove('active');
+                currentImageIndex1 = (currentImageIndex1 + 1) % galleryImages1.length;
+                galleryImages1[currentImageIndex1].classList.add('active');
+            }
+
+            setInterval(changeImage1, 3000); // Cambia de imagen cada 3 segundos
+
+            // Galería de imágenes para la sección 2
+            const galleryImages2 = document.querySelectorAll('#unique-section2 .gallery img');
+            let currentImageIndex2 = 0;
+
+            function changeImage2() {
+                galleryImages2[currentImageIndex2].classList.remove('active');
+                currentImageIndex2 = (currentImageIndex2 + 1) % galleryImages2.length;
+                galleryImages2[currentImageIndex2].classList.add('active');
+            }
+
+            setInterval(changeImage2, 3000); // Cambia de imagen cada 3 segundos
+
+            // Galería de imágenes para la sección 3
+            const galleryImages3 = document.querySelectorAll('#unique-section3 .gallery img');
+            let currentImageIndex3 = 0;
+
+            function changeImage3() {
+                galleryImages3[currentImageIndex3].classList.remove('active');
+                currentImageIndex3 = (currentImageIndex3 + 1) % galleryImages3.length;
+                galleryImages3[currentImageIndex3].classList.add('active');
+            }
+
+            setInterval(changeImage3, 3000); // Cambia de imagen cada 3 segundos
+
+            // Fondo de galería de la sección 1
+            const backgroundGalleryImages = document.querySelectorAll('.background-gallery img');
+            let currentBackgroundImageIndex = 0;
+
+            function changeBackgroundImage() {
+                backgroundGalleryImages[currentBackgroundImageIndex].classList.remove('active');
+                currentBackgroundImageIndex = (currentBackgroundImageIndex + 1) % backgroundGalleryImages.length;
+                backgroundGalleryImages[currentBackgroundImageIndex].classList.add('active');
+            }
+
+            setInterval(changeBackgroundImage, 5000); // Cambia de imagen de fondo cada 5 segundos
+        });
+    </script>
+
+
+
+<body class="custom-body">
+  <div class="header">
+      <div class="logo">
+          <img src="2logo.png" alt="Logo">
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+      </div>
+      <div class="menu" id="menu">
+          <a href="./1ZonaGamer.html"><button class="fixed-button"><span class="button-text">INICIO</span></button></a>
+          <a href="./2 Pagina JUEGOS/2 JUEGOS.html"><button><span class="button-text">JUEGOS</span></button></a>
+          <a href="./3 Pagina Eventos/3 Eventos.html"><button><span class="button-text">EVENTOS</span></button></a>
+          <a href="./4 Pagina Promociones/4 PROMOCIONES.html"><button><span class="button-text">PROMOCIONES</span></button></a>
+          <a href="./5 Play/5 Play.html"><button class="special-button"><span class="button-text">PLAY</span></button></a>
+      </div>
+      <div class="line"></div>
+  </div>
+  <script>
+      function toggleMenu() {
+          const menu = document.getElementById('menu');
+          const hamburger = document.querySelector('.hamburger');
+          menu.classList.toggle('show');
+          hamburger.classList.toggle('active');
+      }
+  </script>
+
+
+
+
+  <!-- Contenedor de redes sociales -->
+  <div class="social-container">
+    <div class="social-top">
+      <div class="social-left">
+        <h2 class="social-h2">ENCUENTRANOS</h2>
+        <p class="social-p"><br><strong>LOCAL: </strong>La Merced 694<br><br>
+        <strong>CONTACTO: </strong>+51 921613631<br><br>
+        <strong>EMAIL: </strong>zonagamer@gmail.com</p>
+      </div>
+      <div class="social-center">
+        <a href="pagina1.html"><img src="Y001.png" alt="Logo 1" class="social-logo social-logo-center"></a>
+        <a href="pagina2.html"><img src="Y002.png" alt="Logo 2" class="social-logo social-logo-center"></a>
+        <a href="pagina3.html"><img src="Y003.png" alt="Logo 3" class="social-logo social-logo-center"></a>
+      </div>
+      <div class="social-right">
+        <a href="pagina4.html"><img src="Y011.png" alt="Logo 4" class="social-logo"></a>
+        <a href="pagina5.html"><img src="Y012.png" alt="Logo 5" class="social-logo"></a>
+      </div>
+    </div>
+    <div class="social-bottom">
+        <p class="social-p">[2024]© Todos los derechos reservados. El uso de nuestras consolas es 
+          completamente legal y conforme a las leyes vigentes.<br> Gracias por elegirnos y respetar nuestras políticas,
+           garantizando una experiencia de juego segura y legal. <br> ZONAGAMER
+           PLAYSTATION 5</p>
+      </div>
+  </div>
+
+</div>  
+
+<script>
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('page-loader');
+        const content = document.getElementById('content');
+
+        // Agregar la animación de aparición al contenido
+        content.style.opacity = '1';
+        content.style.animation = 'reveal 1s ease-in';
+
+        // Ocultar el cargador
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 1000); // Esperar que la transición se complete
+        }, 5000); // Duración total del efecto de carga en milisegundos
+    });
+</script>
+  
+
+</body>
+</html>
