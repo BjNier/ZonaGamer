@@ -458,6 +458,45 @@
 
 
 
+
+<style>
+        .whatsapp-body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+          
+        }
+        .whatsapp-fixed-label {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #f08bd3; 
+	    box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff;
+            color: white; 
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000; 
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 120px;
+        }
+        .whatsapp-fixed-label i {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        .whatsapp-fixed-label:hover {
+            background-color: #00bfff; 
+            transform: scale(1.05);
+    	    box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff;
+        }
+    </style>
+	    
+
+
+	    
+
 </style>
 
 
@@ -466,6 +505,13 @@
 <body>
 
 
+<body class="whatsapp-body">
+    <a href="https://api.whatsapp.com/send?phone=921613931&text=Hola, me gustaría obtener más información." class="whatsapp-fixed-label" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        Consultar por WhatsApp
+        
+    </a>
+	
 
 
 <body class="custom-body">
