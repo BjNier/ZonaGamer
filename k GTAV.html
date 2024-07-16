@@ -46,9 +46,10 @@
             display: flex;
             justify-content: center;
         }
-        .gamer-container .video video {
+        .gamer-container .video iframe {
             width: 100%;
             max-width: 800px;
+            height: 450px; /* Altura ajustada para mantener proporción */
             border: 2px solid #00bfff;
             box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
         }
@@ -503,9 +504,7 @@
     <div class="gamer-container">
         <h1>GRAND THEFT AUTO V</h1>
         <div class="video">
-            <video controls>
-                <source src="GTAV.mp4" type="video/mp4">
-            </video>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/2S4O8Ea6M9Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="description">
           <p>
