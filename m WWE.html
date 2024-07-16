@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZonaGamer</title>
+<link rel="icon" href="titlle_logo.jpeg" type="image/x-icon">
+<style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+        body {
+            background-color: black;
+        }
+        .gamer-container {
+            background-color: black;
+            color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .gamer-container h1, .gamer-container h2, .gamer-container p {
+            margin: 20px 0;
+        }
+        .gamer-container h1 {
+          font-family: 'Press Start 2P', cursive;
+            color: #00bfff;
+            font-size: 3em;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .gamer-container h2 {
+          font-family: 'Press Start 2P', cursive;
+            color: #00bfff;
+            font-size: 3em;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 50px;
+        }
+        .gamer-container .video {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .gamer-container .video iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px; /* Altura ajustada para mantener proporción */
+            border: 2px solid #00bfff;
+            box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+        }
+        .gamer-container .description {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff69b4;
+            color: #ff69b4;
+            text-shadow: 0 0 10px #ff69b4;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px; /* Margen entre la descripción y la galería */
+            transition: border-color 0.3s, box-shadow 0.3s;
+            margin-top: 50px;
+        }
+        .gamer-container .description:hover {
+            border-color: #00bfff;
+            box-shadow: 0 0 30px #00bfff;
+        }
+        .gamer-container .description p {
+            margin: 10px 0;
+            color: #ff69b4;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .gamer-container .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+        .gamer-container .gallery img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3; /* Mantener relación de aspecto 4:3 */
+            object-fit: cover; /* Ajustar sin distorsión */
+            border: 3px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff69b4;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .gamer-container .gallery img:hover {
+            transform: scale(1.1);
+            border-color: #00bfff;
+            box-shadow: 0 0 30px #00bfff;
+        }
+
+
+
+
+
+
+        .main-container {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+            margin: 0 50px; /* Añadir más margen a la izquierda y derecha */
+            border: 2px solid #00ffff; /* Borde del contenedor */
+            border-radius: 10px; /* Bordes redondeados del contenedor */
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .main-container h1 {
+            font-size: 2.5em;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .main-container p {
+          font-size: 1.2em;
+            color: #ff69b4;
+            margin-bottom: 40px;
+        }
+
+        .banner-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 5px; /* Reducir espacio entre imágenes */
+        }
+
+        .banner {
+            width: 22%; /* Hacer las imágenes más pequeñas */
+            position: relative;
+            overflow: hidden;
+            border: 2px solid;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .banner img {
+            width: 100%;
+            display: block;
+        }
+
+        .banner:hover {
+            transform: scale(1.05);
+        }
+
+        /* Borde celeste para imágenes 1 y 2 */
+        .banner:nth-child(1),
+        .banner:nth-child(2) {
+            border-color: #00ffff;
+        }
+
+        /* Borde rosado para imágenes 3 y 4 */
+        .banner:nth-child(3),
+        .banner:nth-child(4) {
+            border-color: #ff00ff;
+        }
+
+
+
+
+
+    .custom-body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black; /* Fondo oscuro estilo gamer */
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      color: white;
+      padding: 25px 20px;
+      position: fixed; /* Fijo en la parte superior */
+      width: 100%; /* Ocupa todo el ancho de la página */
+      top: 0; /* Posicionado en la parte superior */
+      z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+    }
+    .line {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #f08bd3; /* Inicialmente rosado neon */
+      animation: changeColor 10s infinite; /* Cambia de color cada 10 segundos */
+    }
+    @keyframes changeColor {
+      0%, 100% {
+        background-color: #f08bd3; /* Rosado neon */
+      }
+      50% {
+        background-color: #00b0f0; /* Azul neon */
+      }
+    }
+    .logo img {
+      height: 60px; /* Ajusta el tamaño del logo según sea necesario */
+      margin-left: 10px;
+    }
+    .menu {
+      display: flex;
+    }
+    .menu a {
+      text-decoration: none; /* Quitar subrayado predeterminado de los enlaces */
+    }
+    .menu button {
+      font-family: 'Roboto Mono', monospace;
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Agregado box-shadow */
+      border-radius: 20px; /* Pequeña curvatura */
+      font-size: 20px;
+      position: relative;
+      overflow: hidden;
+      display: inline-block; /* Asegura que los botones enlace ocupen solo el tamaño del contenido */
+      margin-right: 35px;
+    }
+    .menu button:hover {
+      background-color: transparent; /* Azul celeste sólido neon */
+      color: white; /* Cambio de color del texto */
+      transform: scale(1.1); /* Efecto de zoom */
+      box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff; /* Sombra neon azul más intensa */
+    }
+    .menu button:hover .button-text {
+      color: #00bfff; /* Cambio de color del texto al estilo gamer */
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: transparent;
+      min-width: 120px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown-content a:hover {
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; 
+      background-color: transparent;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 40px #00bfff;
+      border-radius: 20px;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    /* Estilo especial para el botón 6 */
+    .menu .special-button {
+      background-color: #f08bd3; /* Rosado */
+      box-shadow: 0 0 15px #f08bd3; /* Sombra neon rosada */
+    }
+    .menu .special-button:hover {
+      background-color: #f08bd3; /* Mantener el color rosado */
+      box-shadow: 0 0 20px #f08bd3, 0 0 40px #f08bd3, 0 0 60px #f08bd3; /* Sombra neon rosada más intensa */
+    }
+    .menu .special-button .button-text {
+      color: purple; /* Color inicial del texto */
+    }
+    .menu .special-button:hover .button-text {
+      color: white; /* Cambio de color del texto al estilo gamer */
+    }
+    /* Estilo fijo para el botón 2 */
+    .menu .fixed-button {
+      background-color: transparent; /* Azul celeste sólido neon */
+      box-shadow: 0 0 20px #00b0f0, 0 0 40px #00b0f0, 0 0 60px #00b0f0; /* Sombra neon azul más intensa */
+    }
+    .menu .fixed-button .button-text {
+      color: white; /* Color inicial del texto */
+    }
+    /* Asegura que el contenido principal no quede oculto detrás del menú fijo */
+    .main-content {
+      padding-top: 80px; /* Ajustar según la altura del menú */
+    }
+
+    /* Estilos para menú desplegable en móviles */
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: black;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 10px 0;
+      }
+      .menu a, .dropdown {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .menu a:hover, .dropdown:hover {
+        background-color: #333;
+      }
+      .menu a:hover button, .dropdown:hover button {
+        background-color: transparent;
+        color: #fff;
+      }
+      .menu a:hover .button-text, .dropdown:hover .button-text {
+        color: #00bfff;
+      }
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        margin-right: 20px; /* Añadido margen derecho */
+      }
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 4px;
+        transition: 0.4s;
+      }
+      .hamburger.active .bar1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      .hamburger.active .bar2 {
+        opacity: 0;
+      }
+      .hamburger.active .bar3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+      .menu.show {
+        display: flex;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Estilos generales */
+    .social-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      background-color: black;
+      border-top: 5px solid pink; /* Color inicial del borde */
+      animation: borderAnimation 10s infinite alternate;
+      margin-top: 45px; /* Añade espacio antes del contenedor */
+    }
+    .social-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .social-left {
+      width: 20%;
+      text-align: center;
+    }
+    .social-center {
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-left: 100px;
+      margin-top: 50px;
+    }
+    .social-right {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-right: 70px;
+      margin-top: 20px;
+    }
+    .social-bottom {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .social-bottom p {
+      text-align: center;
+      margin: 0;
+      font-size: 14px;
+      color: white;
+      font-family: 'Roboto Mono', monospace;
+      margin-right: 250px;
+      margin-left: 250px;
+      border-top: solid 2px;
+      border-color: white;
+      padding: 10px;
+
+    }
+    .social-h2 {
+      margin: 0;
+      color: white;
+      text-align: left;
+      font-size: 35px;
+      margin-left: 30px;
+      font-family: 'Roboto Mono', monospace;
+    }
+    .social-p {
+      margin: 0;
+      color: white;
+      text-align: justify;
+      font-size: 15px;
+      margin-left: 70px;
+      font-family: 'Roboto Mono', monospace;
+      
+      
+    }
+    .social-logo {
+      width: 60px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .social-logo-center {
+      width: 200px;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        border-color: pink;
+      }
+      50% {
+        border-color: blue;
+      }
+      100% {
+        border-color: pink;
+      }
+    }
+
+
+
+
+
+
+    </style>
+
+
+</style>
+<body>
+
+
+  <body class="custom-body">
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <div class="menu" id="menu">
+        <a href="/1ZonaGamer.html"><button><span class="button-text">INICIO</span></button></a>
+        <a href="/2 Pagina JUEGOS/2 JUEGOS.html"><button class="fixed-button"><span class="button-text">JUEGOS</span></button></a>
+        <a href="/3 Pagina Eventos/3 Eventos.html"><button><span class="button-text">EVENTOS</span></button></a>
+        <a href="/4 Pagina Promociones/4 PROMOCIONES.html"><button><span class="button-text">PROMOCIONES</span></button></a>
+        <a href="/5 Play/5 Play.html"><button class="special-button"><span class="button-text">PLAY</span></button></a>
+      </div>
+      <div class="line"></div>
+    </div>
+    <div class="main-content">
+      <!-- Contenido principal aquí -->
+    </div>
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById('menu');
+        const hamburger = document.querySelector('.hamburger');
+        menu.classList.toggle('show');
+        hamburger.classList.toggle('active');
+      }
+    </script>
+
+
+
+
+    <div class="gamer-container">
+        <h1>WWE 2K23</h1>
+        <div class="video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/-vGN9C8wTM0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="description">
+          <p>
+            Únete a las mayores estrellas del entretenimiento deportivo en una recreación de WWE 2K24 de los mejores momentos de WrestleMania de los últimos cuarenta años. <BR><BR>
+
+              Participa en algunos de los combates más memorables que marcaron un antes y un después, con luchadores como  “Stone Cold” Steve Austin, Undertaker y Andre the Giant, junto a leyendas modernas como “The American Nightmare” Cody Rhodes, John Cena, Rhea Ripley y Roman Reigns.
+                        </p>
+      </div>
+        <h2>CAPTURAS</h2>
+        <div class="gallery">
+            <img src="WWE1.jpg" alt="Captura 1">
+            <img src="WWE2.jpg" alt="Captura 2">
+            <img src="WWE3.jpg" alt="Captura 3">
+            <img src="WWE4.jpg" alt="Captura 4">
+        </div>
+    </div>
+
+
+
+
+    <div class="main-container">
+        <h1>CANTIDAD DE JUGADORES DISPONIBLES</h1>
+        <p>Los mandos de color celeste indica la cantidad maxima de jugadores que pueden jugar este videojuego</p>
+
+        <div class="banner-container">
+            <div class="banner">
+                <img src="mando1.png" alt="Imagen 1">
+            </div>
+            <div class="banner">
+                <img src="mando1.png" alt="Imagen 2">
+            </div>
+            <div class="banner">
+                <img src="mando2.png" alt="Imagen 3">
+            </div>
+            <div class="banner">
+                <img src="mando2.png" alt="Imagen 4">
+            </div>
+        </div>
+    </div>
+
+
+
+  <div class="social-container">
+    <div class="social-top">
+      <div class="social-left">
+        <h2 class="social-h2">ENCUENTRANOS</h2>
+        <p class="social-p"><br><strong>LOCAL: </strong>La Merced 694<br><br>
+        <strong>CONTACTO: </strong>+51 921613631<br><br>
+        <strong>EMAIL: </strong>zonagamer@gmail.com</p>
+      </div>
+      <div class="social-center">
+        <a href="pagina1.html"><img src="Y001.png" alt="Logo 1" class="social-logo social-logo-center"></a>
+        <a href="pagina2.html"><img src="Y002.png" alt="Logo 2" class="social-logo social-logo-center"></a>
+        <a href="pagina3.html"><img src="Y003.png" alt="Logo 3" class="social-logo social-logo-center"></a>
+      </div>
+      <div class="social-right">
+        <a href="pagina4.html"><img src="Y011.png" alt="Logo 4" class="social-logo"></a>
+        <a href="pagina5.html"><img src="Y012.png" alt="Logo 5" class="social-logo"></a>
+      </div>
+    </div>
+    <div class="social-bottom">
+      <p class="social-p">[2024]© Todos los derechos reservados. El uso de nuestras consolas es 
+        completamente legal y conforme a las leyes vigentes.<br> Gracias por elegirnos y respetar nuestras políticas,
+        garantizando una experiencia de juego segura y legal. <br> ZONAGAMER
+        PLAYSTATION 5</p>
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
